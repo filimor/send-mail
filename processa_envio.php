@@ -59,7 +59,7 @@ try {
 
     //Recipients
     $mail->setFrom('webcompleto2@gmail.com', 'Web Completo Remetente');
-    $mail->addAddress('webcompleto2@gmail.com', 'Web Completo Destinatário');     // Add a recipient
+    $mail->addAddress($mensagem->__get('para'));     // Add a recipient
     //$mail->addAddress('ellen@example.com');               // Name is optional
     //$mail->addReplyTo('info@example.com', 'Information');
     //$mail->addCC('cc@example.com');
@@ -71,9 +71,9 @@ try {
 
     //Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Oi. Eu sou o assunto';
-    $mail->Body    = 'Oi. Eu sou o conteúdo do <b>e-mail</b>.';
-    $mail->AltBody = 'Oi. Eu sou o conteúdo do e-mail.';
+    $mail->Subject = $mensagem->__get('assunto');
+    $mail->Body    = $mensagem->__get('mensagem');
+    $mail->AltBody = 'Seu cliente de e-mail não suporta HTML.';
 
     $mail->send();
     echo 'A mensagem foi enviada.';
